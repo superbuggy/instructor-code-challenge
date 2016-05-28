@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra-reloader'
+require 'sinatra/reloader'
 
 get '/' do
   File.open('views/index.html')
