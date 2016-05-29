@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'json'
 
 get '/' do
   File.open('views/index.html')
@@ -18,5 +19,4 @@ get '/favorites/:name/:oid' do
   movie = { name: params[:name], oid: params[:oid] }
   file << movie
   File.write('data.json',JSON.pretty_generate(file))
-  movie.to_json
 end
