@@ -1,6 +1,8 @@
-var searchResults;
+var searchResults, resultsDiv;
 
 document.addEventListener("DOMContentLoaded", function() {
+
+  resultsDiv = document.getElementById("results");
 
   var searchButton = document.getElementById("search-button");
   var searchBox = document.getElementById("search-box");
@@ -32,9 +34,36 @@ function omdbRequest(searchString) {
   request.send();
 }
 
-
+//renders search results one by one
 function displayResults(resultsToDisplay) {
-  resultsToDisplay.Search.forEach( function(result){
-    console.log(result);
-  });
+  //The OMDB api's JSON struture stores the search results in the property named "Search"
+  resultsToDisplay.Search.forEach(
+    function(result){
+      renderResult(result);
+    }
+  );
+}
+
+//renders an individual search result
+function renderResult(result){
+  var title = result.Title;
+  var year = result.Year;
+  var imgUrl = result.Poster;
+  var id = result.imdbID;
+
+  var resultContainer = document.createElement("div");
+  resultContainer.setAttribute("class", "result");
+
+  var aboutText = title + " (" + year + ")";
+  var resultTextNode = document.createTextNode(aboutText);
+  var resultHeader = document.createElement("header");
+
+  resultHeader.appendChild(resultTextNode);
+
+  var resultImg = document.createElement("img");
+  resultImg.setAttribute("src", imgUrl);
+
+  resultContainer.appendChild(resultHeader);
+  resultContainer.appendChild(resultImg);
+  resultsDiv.appendChild(resultContainer);
 }
