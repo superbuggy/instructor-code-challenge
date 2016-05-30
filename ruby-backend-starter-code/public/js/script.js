@@ -152,30 +152,29 @@ function showDetails(result) {
   var detailsDiv = document.createElement("div");
 
   var scoreNode = document.createTextNode(
-    "IMDB score: " + imdbRating + ", Metacritic score " + metaScore);
-    var scorePara = document.createElement("p");
-    scorePara.appendChild(scoreNode);
+  "IMDB score: " + imdbRating + ", Metacritic score " + metaScore);
+  var scorePara = document.createElement("p");
+  scorePara.appendChild(scoreNode);
 
-    var plotNode = document.createTextNode(plot);
-    var plotPara = document.createElement("p");
-    plotPara.appendChild(plotNode);
+  var plotNode = document.createTextNode(plot);
+  var plotPara = document.createElement("p");
+  plotPara.appendChild(plotNode);
 
-    var runtimeNode = document.createTextNode(runtime + " minutes");
-    var runtimePara = document.createElement("p");
-    runtimePara.appendChild(runtimeNode);
+  var runtimeNode = document.createTextNode(runtime + " minutes");
+  var runtimePara = document.createElement("p");
+  runtimePara.appendChild(runtimeNode);
 
-    var personnelNode = document.createTextNode(
-      "Written by " + writer + ", directed by " + director + ", starring: " + actors);
-      var personnelPara = document.createElement("p");
-      personnelPara.appendChild(personnelNode);
+  var personnelNode = document.createTextNode(
+    "Written by " + writer + ", directed by " + director + ", starring: " + actors);
+  var personnelPara = document.createElement("p");
+  personnelPara.appendChild(personnelNode);
 
-      //adds all paragraph tags to the details div
-      detailsDiv.appendChild(runtimePara);
-      detailsDiv.appendChild(personnelPara);
-      detailsDiv.appendChild(plotPara);
-      detailsDiv.appendChild(scorePara);
+  //adds all paragraph tags to the details div
+  detailsDiv.appendChild(runtimePara);
+  detailsDiv.appendChild(personnelPara);
+  detailsDiv.appendChild(plotPara);
+  detailsDiv.appendChild(scorePara);
 
-      var resultContainer = document.getElementById(id);
-      resultContainer.appendChild(detailsDiv);
-
-    }
+  var resultContainer = document.getElementById(id);
+  resultContainer.appendChild(detailsDiv);
+}
