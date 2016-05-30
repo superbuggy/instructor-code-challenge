@@ -9,14 +9,30 @@
 <body>
 
   <header>
-    <h1>OMDB</h1>
-    <p>It's not a typo!</p>
+    <h1>Mystery Science OMDB Search 3000</h1>
   </header>
 
   <div class="main">
     <input type="text" id="search-box"></input>
     <button id="search-button">Search</button>
-    <div id ="results"></div>
+    <table>
+      <tr>
+        <td>
+          <h3>Search</h3>
+        </td>
+        <td>
+          <h3>Favorites</h3>
+        </td>
+      </tr>
+      <tr>
+        <td id="results-col">
+          <div id="results"></div>
+        </td>
+        <td id="fav-col">
+          <div id="favorites"></div>
+        </td>
+      </tr>
+    </table>
   </div>
 
 </body>
