@@ -1,6 +1,31 @@
-var searchResult, resultsDiv;
+var searchResult, resultsDiv, favorites, faveDiv;
 
 document.addEventListener("DOMContentLoaded", function() {
+
+  //makes a synchronous call to sinatra back-end for the favorites
+  var requestFaves = new XMLHttpRequest();
+  requestFaves.open("GET", "/favorites", false);
+  requestFaves.onload = function() {
+    if (requestFaves.status < 400 && requestFaves.status >= 200) {
+      favorites = JSON.parse(requestFaves.responseText);
+    } else {
+      alert("Couldn't load favorites. Error #" + requestFaves.status);
+    }
+  };
+  requestFaves.send();
+
+  faveDiv = document.getElementById('favorites');
+  console.log(faveDiv);
+  favorites.forEach(function(fave){
+    var faveLink = document.createElement("a");
+    faveLink.setAttribute("href","http://www.imdb.com/title/" + fave.oid);
+    var faveLinkTextNode = document.createTextNode(fave.name);
+    faveLink.appendChild(faveLinkTextNode);
+    var faveLinkContainer = document.createElement("p");
+    faveLinkContainer.appendChild(faveLink);
+    faveDiv.appendChild(faveLinkContainer);
+  });
+
 
   //points to the div in index.html with id "results", used for rendering DOM elements
   resultsDiv = document.getElementById("results");
@@ -128,29 +153,29 @@ function showDetails(result) {
 
   var scoreNode = document.createTextNode(
     "IMDB score: " + imdbRating + ", Metacritic score " + metaScore);
-  var scorePara = document.createElement("p");
-  scorePara.appendChild(scoreNode);
+    var scorePara = document.createElement("p");
+    scorePara.appendChild(scoreNode);
 
-  var plotNode = document.createTextNode(plot);
-  var plotPara = document.createElement("p");
-  plotPara.appendChild(plotNode);
+    var plotNode = document.createTextNode(plot);
+    var plotPara = document.createElement("p");
+    plotPara.appendChild(plotNode);
 
-  var runtimeNode = document.createTextNode(runtime + " minutes");
-  var runtimePara = document.createElement("p");
-  runtimePara.appendChild(runtimeNode);
+    var runtimeNode = document.createTextNode(runtime + " minutes");
+    var runtimePara = document.createElement("p");
+    runtimePara.appendChild(runtimeNode);
 
-  var personnelNode = document.createTextNode(
-    "Written by " + writer + ", directed by " + director + ", starring: " + actors);
-  var personnelPara = document.createElement("p");
-  personnelPara.appendChild(personnelNode);
+    var personnelNode = document.createTextNode(
+      "Written by " + writer + ", directed by " + director + ", starring: " + actors);
+      var personnelPara = document.createElement("p");
+      personnelPara.appendChild(personnelNode);
 
-  //adds all paragraph tags to the details div
-  detailsDiv.appendChild(runtimePara);
-  detailsDiv.appendChild(personnelPara);
-  detailsDiv.appendChild(plotPara);
-  detailsDiv.appendChild(scorePara);
+      //adds all paragraph tags to the details div
+      detailsDiv.appendChild(runtimePara);
+      detailsDiv.appendChild(personnelPara);
+      detailsDiv.appendChild(plotPara);
+      detailsDiv.appendChild(scorePara);
 
-  var resultContainer = document.getElementById(id);
-  resultContainer.appendChild(detailsDiv);
+      var resultContainer = document.getElementById(id);
+      resultContainer.appendChild(detailsDiv);
 
-}
+    }
