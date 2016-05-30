@@ -13,9 +13,18 @@ img {
   max-width: 250px;
 }
 
-.result {
+.result, table {
   border: 2px solid white;
   max-width: 350px;
   margin: 1em auto;
   padding: .5em;
+}
+
+a {
+  color: white;
+}
+
+#fav-col {
+  border: 2px solid white;
+  margin: 1em;
 }
